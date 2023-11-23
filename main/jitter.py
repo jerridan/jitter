@@ -37,10 +37,10 @@ def create_git_branch(branch_name):
     repo = git.Repo(current_directory)
 
     if branch_name in repo.heads:
-        print(f"Branch {branch_name} already exists")
-        return
+        branch = repo.heads[branch_name]
+    else:
+        branch = repo.create_head(branch_name)
 
-    branch = repo.create_head(branch_name)
     branch.checkout()
 
 
