@@ -38,8 +38,10 @@ def create_git_branch(branch_name):
 
     if branch_name in repo.heads:
         branch = repo.heads[branch_name]
+        print("Switching to existing branch")
     else:
         branch = repo.create_head(branch_name)
+        print("Creating new branch")
 
     branch.checkout()
 
@@ -66,8 +68,6 @@ def main():
     branch_name = generate_branch_name(ticket_number, ticket_name)
 
     create_git_branch(branch_name)
-
-    print(f"Checked out to branch {branch_name}")
 
 
 if __name__ == "__main__":
