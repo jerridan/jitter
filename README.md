@@ -40,6 +40,14 @@ Replace `/path/to/jitter/dist` with the absolute path to the `dist` directory th
 
 ## Usage
 
-After installing the Jitter project, from any directory just run `jitter [ticket number]` to create a new branch with the ticket information. Replace `[ticket number]` with your specific Jira ticket number.
+After installing the Jitter project, from any directory just run:
+
+`jitter [ticket number]` 
+
+This will create a new branch using the summary. Replace `[ticket number]` with your specific Jira ticket number.
+
+For example, if your Jira ticket number is `ADA-1234`, run: `jitter ADA-1234`
+
+If the ticket summary is `Add a new feature`, the branch name will be `ADA-1234-add-a-new-feature`.
 
 Happy Coding!
