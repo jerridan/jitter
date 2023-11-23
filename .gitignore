@@ -1,0 +1,7 @@
+.idea
+.env
+
+# PyInstaller generated files
+jitter.spec
+build
+dist
