@@ -4,8 +4,21 @@ import argparse
 from atlassian import Jira
 import git
 import re
+import os
+import yaml
 
-from main.config import jira_url, jira_username, jira_token
+
+def get_config():
+    config_path = os.path.expanduser("~/.jitter.yml")
+    try:
+        with open(config_path, "r") as file:
+            return yaml.safe_load(file)
+    except FileNotFoundError:
+        print(f"Config file not found at {config_path}")
+        exit(1)
+    except yaml.YAMLError as e:
+        print(f"Error reading config file at {config_path}: {e}")
+        exit(1)
 
 
 def get_jira_ticket_name(jira, ticket_number):
@@ -20,7 +33,13 @@ def generate_branch_name(ticket_number, ticket_name):
 
 
 def create_git_branch(branch_name):
-    repo = git.Repo.init()
+    current_directory = os.getcwd()
+    repo = git.Repo(current_directory)
+
+    if branch_name in repo.heads:
+        print(f"Branch {branch_name} already exists")
+        return
+
     branch = repo.create_head(branch_name)
     branch.checkout()
 
@@ -32,6 +51,12 @@ def handle_args():
 
 
 def main():
+    config = get_config()
+
+    jira_url = config["jira"]["url"]
+    jira_username = config["jira"]["username"]
+    jira_token = config["jira"]["token"]
+
     args = handle_args()
     ticket_number = args.ticket_number
 
