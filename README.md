@@ -11,48 +11,6 @@ A tool that generates a git branch given a jira ticket number.
 
 ## Installation Steps
 
-### Using Docker
-
-1. Clone the Github repository and navigate to the project directory
-
-    ```bash
-    git clone https://github.com/jerridan/jitter
-    cd jitter
-    ```
-
-2. Build the Docker image
-
-    ```bash
-    docker build -t jitter .
-    ```   
-
-3. Create a temporary Docker container
-
-    ```bash
-    docker create --name temp-container jitter
-    ```
-
-4. Copy the executable from the container to your local directory
-
-    ```bash
-    docker cp temp-container:/usr/src/app/dist/jitter ./path/to/local/directory
-    ```
-
-5. Remove the temporary container
-
-   ```bash
-   docker rm temp-container
-   ```
-   
-6. Add the jitter executable to your PATH
-
-    ```bash
-    echo 'export PATH="$PATH:/absolute/path/to/jitter"' >> ~/.zshrc # or ~/.bashrc if you use bash
-    source ~/.zshrc
-    ```
-
-### Locally
-
 1. Clone the Github repository
 
     ```bash
@@ -60,18 +18,16 @@ A tool that generates a git branch given a jira ticket number.
     cd jitter
     ```
 
-2. Install the dependencies using Poetry
+2. Install the dependencies in a virtual environment using Poetry
 
     ```bash
-    poetry install
+    make init
     ```
 
 3. Package the script into an executable using Pyinstaller
 
-   Use Pyinstaller to package the script:
-
     ```bash
-    poetry run pyinstaller --onefile main/jitter.py
+    make build
     ```
 
 4. Add the resulting executable (located in `dist` folder) to your PATH
