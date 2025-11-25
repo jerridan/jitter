@@ -1,6 +1,6 @@
 # Jitter
 
-A tool that generates a git branch given a jira ticket number.
+A tool that generates a git branch given a Jira or Linear ticket.
 
 ## Pre-requisites
 
@@ -39,48 +39,101 @@ A tool that generates a git branch given a jira ticket number.
 
 ## Configuration
 
-To use the Jitter Python script, you need to set up a YAML configuration file named .jitter.yml in your home directory.
-It requires your Jira configuration details including username and API token.
+To use the Jitter script, you need to set up a YAML configuration file named `.jitter.yml` in your home directory.
+You can configure Jira, Linear, or both platforms.
 
 Follow these steps:
 
-### Step 1: Obtain your Jira API token.
-
-You can generate a new API token from
-your [Atlassian account settings](https://id.atlassian.com/manage-profile/security), under Security > API tokens.
-
-### Step 2: - Create .jitter.yml file in your home directory.
+### Step 1: Create .jitter.yml file in your home directory
 
 You can do this by running the following command in your terminal:
 
 `touch ~/.jitter.yml`
 
-### Step 3: - Open ~/.jitter.yml in a text editor and add your Jira configuration inside it.
+### Step 2: Add platform configuration(s)
 
-The file should have the following format:
+Open `~/.jitter.yml` in a text editor and add configuration for at least one platform.
+
+#### For Jira Only:
 
 ```yaml
 jira:
-  url: your_jira_url # ex. https://example.atlassian.net
-  username: your_jira_username
-  token: your_jira_token
+  url: https://example.atlassian.net
+  username: your_email@example.com
+  token: your_jira_api_token
 ```
 
-Replace your_jira_url, your_jira_username, and your_jira_token with your actual Jira details.
+**Obtaining your Jira API token:**
+Generate a new API token from your [Atlassian account settings](https://id.atlassian.com/manage-profile/security),
+under Security > API tokens.
 
-Note: Treat your API tokens like passwords and keep them secret. API tokens link to your Atlassian account until you
-revoke them.
+#### For Linear Only:
+
+```yaml
+linear:
+  api_key: lin_api_xxxxxxxxxxxxx
+```
+
+**Obtaining your Linear API key:**
+1. Visit https://linear.app/settings/api
+2. Create a new Personal API Key
+3. Give it a descriptive name (e.g., "Jitter CLI")
+4. Copy the key to your configuration file
+
+#### For Both Platforms:
+
+```yaml
+jira:
+  url: https://example.atlassian.net
+  username: your_email@example.com
+  token: your_jira_api_token
+
+linear:
+  api_key: lin_api_xxxxxxxxxxxxx
+```
+
+**Note:** Treat your API tokens and keys like passwords and keep them secret. They link to your accounts until you revoke them.
 
 ## Usage
 
 After installing the Jitter project, from any directory just run:
 
-`jitter [ticket number]`
+`jitter [ticket identifier or URL]`
 
-This will create a new branch using the summary. Replace `[ticket number]` with your specific Jira ticket number.
+This will create a new branch using the ticket summary/title.
 
-For example, if your Jira ticket number is `ADA-1234`, run: `jitter ADA-1234`
+### Usage Examples
 
-If the ticket summary is `Add a new feature`, the branch name will be `ADA-1234-add-a-new-feature`.
+#### Using Ticket IDs
+
+If you have **only one platform configured**, you can use ticket IDs directly:
+
+```bash
+# With only Jira configured
+jitter ADA-1234
+
+# With only Linear configured
+jitter ADA-1234
+```
+
+If you have **both platforms configured**, you must use the full URL to specify which platform:
+
+#### Using URLs (Works with any configuration)
+
+```bash
+# Jira ticket by URL
+jitter https://example.atlassian.net/browse/ADA-1234
+
+# Linear issue by URL
+jitter https://linear.app/ada/issue/ADA-1234/issue-title
+```
+
+### Branch Naming
+
+The tool automatically generates a branch name in kebab-case format:
+
+**Format:** `{TICKET-ID}-{kebab-case-title}`
+
+**Example:** If your ticket ID is `ADA-1234` and the title is `Add a new feature`, the branch name will be `ADA-1234-add-a-new-feature`.
 
 Happy Coding!
