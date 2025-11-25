@@ -1,5 +1,5 @@
 import requests
-from .base import TicketProvider
+from main.providers.base import TicketProvider
 
 
 class LinearProvider(TicketProvider):

@@ -6,8 +6,8 @@ import re
 import os
 import yaml
 
-from .providers import create_provider
-from .input_parser import parse_input
+from main.providers import create_provider
+from main.input_parser import parse_input
 
 
 def get_config():

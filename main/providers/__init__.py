@@ -1,6 +1,6 @@
-from .base import TicketProvider
-from .jira import JiraProvider
-from .linear import LinearProvider
+from main.providers.base import TicketProvider
+from main.providers.jira import JiraProvider
+from main.providers.linear import LinearProvider
 
 
 def create_provider(platform: str, config: dict) -> TicketProvider:

@@ -1,5 +1,5 @@
 from atlassian import Jira
-from .base import TicketProvider
+from main.providers.base import TicketProvider
 
 
 class JiraProvider(TicketProvider):
