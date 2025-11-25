@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "jitter"
 version = "0.1.0"
-description = "A tool that generates a git branch given a jira ticket number"
+description = "A tool that generates a git branch given a Jira or Linear ticket"
 authors = ["Jerridan Quiring <jerridan@gmail.com>"]
 license = "MIT"
 packages = [{include = "main"}]
@@ -11,6 +11,7 @@ python = "^3.11,<3.13"
 Atlassian-Python-Api = "^3.41.3"
 GitPython = "^3.1.40"
 pyyaml = "^6.0.1"
+requests = "^2.31.0"
 
 [tool.poetry.scripts]
 jitter = "main.jitter:main"
