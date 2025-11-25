@@ -68,6 +68,7 @@ def handle_args():
     )
     parser.add_argument(
         "ticket_input",
+        metavar="ticket",
         help="Ticket identifier (e.g., ADA-1234) or full URL",
     )
     return parser.parse_args()
