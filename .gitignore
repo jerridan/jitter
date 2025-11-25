@@ -1,5 +1,6 @@
 .idea
 .env
+.venv
 
 # PyInstaller generated files
 jitter.spec
