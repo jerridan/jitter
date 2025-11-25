@@ -1,0 +1,17 @@
+# Jitter Configuration Example
+# Copy this file to ~/.jitter.yml and configure at least one platform
+
+# Jira Configuration
+# Get your API token from: https://id.atlassian.com/manage-profile/security
+jira:
+  url: https://example.atlassian.net
+  username: your_email@example.com
+  token: your_jira_api_token
+
+# Linear Configuration
+# Get your API key from: https://linear.app/settings/api
+linear:
+  api_key: lin_api_xxxxxxxxxxxxx
+
+# Note: When both platforms are configured, use full URLs to disambiguate
+# Example: jitter https://linear.app/workspace/issue/ADA-1234/title

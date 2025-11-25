@@ -42,17 +42,15 @@ A tool that generates a git branch given a Jira or Linear ticket.
 To use the Jitter script, you need to set up a YAML configuration file named `.jitter.yml` in your home directory.
 You can configure Jira, Linear, or both platforms.
 
-Follow these steps:
+### Quick Setup
 
-### Step 1: Create .jitter.yml file in your home directory
+Copy the example configuration file:
 
-You can do this by running the following command in your terminal:
+```bash
+cp .jitter.yml.example ~/.jitter.yml
+```
 
-`touch ~/.jitter.yml`
-
-### Step 2: Add platform configuration(s)
-
-Open `~/.jitter.yml` in a text editor and add configuration for at least one platform.
+Then edit `~/.jitter.yml` and configure at least one platform with your credentials.
 
 #### For Jira Only:
 
